@@ -7,11 +7,13 @@
 #include "data.h"
 
 
+//driver setup
 NTSTATUS DriverEntry(PDRIVER_OBJECT pDriverObject,	PUNICODE_STRING pRegistryPath) {
 	UNREFERENCED_PARAMETER(pRegistryPath);
 
 	pDriverObject->DriverUnload = UnloadDriver;
 
+	//could it be done in communicatoin.c by iocontrol??
 	PsSetLoadImageNotifyRoutine(ImageLoadCallback);
 
 	RtlInitUnicodeString(&dev, L"\\Device\\ioctldriver");
